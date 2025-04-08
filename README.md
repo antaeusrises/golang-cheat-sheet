@@ -460,6 +460,14 @@ var m = map[string]Vertex{
 for key, value := range m {
 }
 
+// Deep copy of map to another
+// Maps in Go are reference types, so to deep copy the contents of a map, you cannot assign one instance to another. You can do this by creating a new, empty map and then iterating over the old map in a for range loop to assign the appropriate key-value pairs to the new map. 
+for k, v := range fruitRank {
+	fruitRankCopy[k] = v
+}
+// Shallow copy of map to another -  a modification in either map will cause a change in the data of both maps.
+fruitRankCopy = fruitRank
+
 ```
 Maps of slices and Slices of maps
 ```go
