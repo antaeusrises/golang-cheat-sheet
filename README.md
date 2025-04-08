@@ -503,6 +503,23 @@ for k, v := range fruitRank {
 // Shallow copy of map to another -  a modification in either map will cause a change in the data of both maps.
 fruitRankCopy = fruitRank
 
+// Concurrency - Maps are not safe for concurrent use. To read from and write to a map from concurrently executing goroutines protect maps  with sync.RWMutex.
+var counter = struct{
+    sync.RWMutex
+    m map[string]int
+}{m: make(map[string]int)}
+
+To read from the counter, take the read lock:
+counter.RLock()
+n := counter.m["some_key"]
+counter.RUnlock()
+fmt.Println("some_key:", n)
+
+To write to the counter, take the write lock:
+counter.Lock()
+counter.m["some_key"]++
+counter.Unlock()
+
 ```
 Maps of slices and Slices of maps
 ```go
