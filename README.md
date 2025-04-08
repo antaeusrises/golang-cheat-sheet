@@ -442,13 +442,16 @@ for range time.Tick(time.Second) {
 ## Maps
 
 ```go
-m := make(map[string]int)
+m := make(map[string]int) // OR use map literal with empty value: m = map[string]int{}
 m["key"] = 42
 fmt.Println(m["key"])
 
 delete(m, "key")
 
-elem, ok := m["key"] // test if key "key" is present and retrieve it, if so
+n := len(m) // returns number of items in a map
+
+
+elem, ok := m["key"] // test if key "key" is present and retrieve it, if so. if not, elem is zero value and ok is false
 
 // map literal
 var m = map[string]Vertex{
@@ -480,6 +483,9 @@ Maps of slices and Slices of maps
 	hobbies["Alice"] = append(hobbies["Alice"], "Gardening")
 	hobbies["Charlie"] = []string{"Swimming"}
 	fmt.Println(hobbies)
+
+	Also,
+	hobbies := make(map[string][]string) // OR more complex: likes := make(map[string][]*Person)
 
 // slices of maps - e.g. stack of maps
 	people := make([]map[string]int, 2)
