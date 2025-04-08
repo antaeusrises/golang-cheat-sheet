@@ -461,6 +461,34 @@ for key, value := range m {
 }
 
 ```
+Maps of slices and Slices of maps
+```go
+// map of slices
+	hobbies := map[string][]string{
+		"Alice": {"Reading", "Hiking"},
+		"Bob":   {"Cooking"},
+	}
+
+	hobbies["Alice"] = append(hobbies["Alice"], "Gardening")
+	hobbies["Charlie"] = []string{"Swimming"}
+	fmt.Println(hobbies)
+
+// slices of maps - e.g. stack of maps
+	people := make([]map[string]int, 2)
+
+	for i := range people {
+		people[i] = make(map[string]int)
+	}
+
+	people[0]["Alice"] = 25
+	people[0]["Charlie"] = 32
+	people[0]["David"] = 12
+
+	people[1]["Bob"] = 22
+
+	fmt.Println(people)
+
+```
 
 ## Structs
 
